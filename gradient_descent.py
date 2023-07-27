@@ -15,7 +15,7 @@ y_data = [2, 4, 6]
 # guess a random
 w = 1.0
 
-epsilon = 0.01
+gamma = 0.01
 
 cost_l = []
 episode_l = []
@@ -43,7 +43,16 @@ def dl():
     for episode in np.arange(1, 101, 1):
         avg = cost(x_data, y_data)
         global w
-        w = w - epsilon * grad(x_data, y_data)
+        """
+        cost = 1/n * (y' - y) ^ 2
+             = 1/n * (w * x - y) ^ 2
+        To minimize the cost, let's find a good (w)
+        ----------------------------------------------
+        grad = (cost)_w' = 2/n * (w * x - y) * x
+        ----------------------------------------------
+        So w need reduce(sub) a (gamma * grad) 
+        """
+        w = w - gamma * grad(x_data, y_data)
         episode_l.append(episode)
         cost_l.append(avg)
         
