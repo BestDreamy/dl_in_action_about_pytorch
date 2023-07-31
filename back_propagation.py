@@ -69,8 +69,8 @@ def show():
     
     
 if __name__ == "__main__":
-    dl()
-    show()
+    # dl()
+    # show()
     
     """
     Tensor 基本运算:
@@ -110,3 +110,8 @@ if __name__ == "__main__":
     print(f'res = {res}\nres.data = {res.data}\nres.grad_fn = {res.grad_fn}\nres.grad = {res.grad}\nres.grad.data = {res.grad.data}')
     -----------------------------------------------------------------------------------------------------------------
     """
+
+    res = torch.tensor([[1.], [2.], [3.]], requires_grad = True)
+    ans = res * 2
+    ans.backward()
+    print(f'ans = {ans}, res.grad.data = {res.grad.data}')
